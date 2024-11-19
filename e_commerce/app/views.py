@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 from .models import *
+import os
 # Create your views here.
 def e_login(req):
     if 'shop' in req.session:
@@ -72,3 +73,24 @@ def edit_product(req,pid):
     else:
         data=Product.objects.get(pk=pid)
         return render(req,'shop/edit.html',{'data':data})
+    
+def delete_product(req,pid):
+    data=Product.objects.get(pk=pid)
+    file=data.img.url
+    file=file.split('/')[-1]
+    os.remove('media/'+file)
+    data.delete()
+    return redirect(shop_home)
+
+
+def user_home(req):
+    return render(req,'user/home.html')
+
+def user_reg(req):
+    return render(req,'user/register.html')
+
+def user_cart(req):
+    return render(req,'user/my_cart.html')
+
+def user_contact(req):
+    return render(req,'user/contact.html')
