@@ -14,7 +14,7 @@
           <!-- Links -->
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="user_reg">register</a>
+              <a class="nav-link" href="user_home">home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="user_cart">my cart</a>
@@ -22,9 +22,28 @@
             <li class="nav-item">
               <a class="nav-link" href="user_contact">contact us</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="logout">log out</a>
+              </li>
           </ul>
         </div>
-      
       </nav>
+      <div class="container">
+        <div class="row">
+          {% for pro in products %}
+          <div class="col-lg-4">
+            <a href="">
+            <div class="card" style="width:400px">
+              <img class="card-img-top" src="{{pro.img.url}}" alt="Card image" style="height: 500px;">
+              <div class="card-body">
+                <h4 class="card-title">{{pro.name}}</h4>
+                <p class="card-text">{{pro.dis}}</p>
+              </div>
+            </div>
+        </a>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
 </body>
 </html>
